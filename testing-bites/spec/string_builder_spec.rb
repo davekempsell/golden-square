@@ -1,6 +1,12 @@
 require 'string_builder'
 
 RSpec.describe StringBuilder do
+  it "tests for initialize" do
+    string = StringBuilder.new
+    result = string.initialize
+    expect(result).to eq ""
+  end
+
   it "tells you the length of a string" do
     string = StringBuilder.new
     string.add("This is my string")

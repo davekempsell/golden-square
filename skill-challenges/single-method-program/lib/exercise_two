@@ -1,0 +1,16 @@
+# Describe the problem
+  As a user, so that I can improve my grammar, I want to verify that a text
+  starts with a capital letter and ends with a suitable punctuation mark. 
+
+# Design the method signature
+check_grammar(text)
+
+Returns true if text starts with a capital letter and ends in the right punctuation. 
+Otheriwse, returns false.
+
+# Create examples to test
+check_grammar("I can code.") => "Your grammar is correct"
+check_grammar("I can code?") => "Your grammar is correct"
+check_grammar("i can code?") => "Your grammar is incorrect"
+check_grammar("I can code") => "Your grammar is incorrect"
+check_grammar("i can code") => "Your grammar is incorrect"
