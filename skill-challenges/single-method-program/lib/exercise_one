@@ -1,0 +1,20 @@
+1 Describe the problem:
+# As a user, so that I can manage my time, I want to see an estimate
+# of reading time for a text, assuming I can read 200 words a minute
+
+2. Design the method signature
+Include the name of the method, its parameters, return value, and side effects.
+
+reading_time = estimate_reading_time("text")
+
+* reading_time is an integer representing minutes
+
+3. Create examples as tests
+Make a list of examples of what the method will take and return.
+
+estimate_reading_time(EIGHT_WORDS) => 1
+estimate_reading_time(THREE_HUNDRED_WORDS) => 2
+estimate_reading_time(TEN_THOUSAND_WORDS) => 50
+estimate_reading_time(nil) throws an error
+
+4. implement the behaviour
