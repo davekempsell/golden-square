@@ -1,0 +1,17 @@
+# Describe the problem
+check if a text includes the string #TODO 
+so the user can keep track of their tasks
+
+# Method Signature
+check_text(text)
+
+returns text if it includes "#TODO"
+if TODO is not included, nothing is returned
+
+# Tests
+check_text("#TODO clean the car") => "#TODO clean the car"
+check_text("clean the car") => nothing returned
+check_text("clean #TODO the car") => "clean #TODO the car"
+check_text("clean the car #TODO") => "clean the car #TODO"
+check_text("#todo clean the car") => nothing returned
+check_text("todo clean the car") => nothing returned
