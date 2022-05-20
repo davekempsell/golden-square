@@ -1,0 +1,78 @@
+Possible tests
+
+# Integration tests
+```ruby
+#1 all method returns a list of added entries
+diary = Diary.new
+entry = DiaryEntry.new("Monday", "One two three.")
+diary.add(entry)
+expect(diary.all).to eq [entry]
+
+#2 count_words method returns total of words in all entries
+diary = Diary.new
+entry1 = DiaryEntry.new("Monday", "One two three.")
+entry2 = DiaryEntry.new("Tuesday", "Four five six.")
+diary.add(entry1)
+diary.add(entry2)
+expect(diary.count_words).to eq 6
+
+#3 reading_time method returns estimated time to read all entries
+diary = Diary.new
+entry1 = DiaryEntry.new("Monday", "One two three.")
+entry2 = DiaryEntry.new("Tuesday", "Four five six.")
+diary.add(entry1)
+diary.add(entry2)
+expect(reading_time(2)).to eq 3
+
+#4 find_best_entry_for_reading_time returns correct entry
+diary = Diary.new
+entry1 = DiaryEntry.new("Monday", "One two three.")
+entry2 = DiaryEntry.new("Tuesday", "Four five six seven eight nine ten.")
+entry3 = DiaryEntry.new("Wednesday", "words " * 100)
+diary.add(entry1)
+diary.add(entry2)
+diary.add(entry3)
+result = diary.find_best_entry_for_reading_time(2, 3)
+expect(result).to eq entry2
+```
+
+# DiaryEntry unit tests
+```ruby
+#1 title method returns title as string
+entry = DiaryEntry.new("Monday", "One two three.")
+expect(entry.title)to. eq "Monday"
+
+#2 contents method returns contents as string
+entry = DiaryEntry.new("Monday", "One two three.")
+expect(entry.contents)to. eq "One two three."
+
+#3 count_words method returns number of words in contents as integer
+entry = DiaryEntry.new("Monday", "One two three.")
+expect(entry.count_words)to. eq 3
+
+#4 reading_time method fails if passed a non-integer
+entry = DiaryEntry.new("Monday", "One two three.")
+expect { entry.reading_time("one")}.to raise_error "non-integer entered as wpm"
+
+#5 reading time method returns estimate of time to read contents
+entry = DiaryEntry.new("Monday", "One two three.")
+expect(entry.reading_time(2)).to eq 2
+
+#6 reading_chunk method returns a chunk of contents that can be read in the given time
+entry = DiaryEntry.new("Monday", "One two three four five six seven eight nine ten.")
+expect(entry.reading_chunk(2, 2)).to eq "One two three four"
+
+#7 reading_chunk method returns next chunk of contents when called again
+entry = DiaryEntry.new("Monday", "One two three four five six seven eight nine ten.")
+entry.reading_chunk(2, 2)
+expect(entry.reading_chunk(2, 2)).to eq "five six seven eight"
+
+#8 reading_chunk returns to beginning of contents when all has been read
+entry = DiaryEntry.new("Monday", "One two three four five six seven eight nine ten.")
+entry.reading_chunk(2, 2)
+entry.reading_chunk(2, 2)
+entry.reading_chunk(2, 2)
+expect(entry.reading_chunk(2, 2)).to eq "One two three four"
+```
+
+# Diary unit tests
