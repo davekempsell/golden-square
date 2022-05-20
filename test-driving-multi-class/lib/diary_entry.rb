@@ -1,34 +1,42 @@
 class DiaryEntry
-    def initialize(title, contents) # title, contents are strings
-      # ...
+    def initialize(title, contents)
+       @title = title
+       @contents = contents
+       @words_read = 0
     end
   
     def title
-      # Returns the title as a string
+      return @title
     end
   
     def contents
-      # Returns the contents as a string
+      return @contents
     end
   
     def count_words
-      # Returns the number of words in the contents as an integer
+      @contents.count(" ") + 1
     end
   
-    def reading_time(wpm) # wpm is an integer representing
-                          # the number of words the user can read per minute
-      # Returns an integer representing an estimate of the reading time in minutes
-      # for the contents at the given wpm.
+    def reading_time(wpm)
+      return (count_words / wpm.to_f).ceil
     end
   
-    def reading_chunk(wpm, minutes) # `wpm` is an integer representing the number
-                                    # of words the user can read per minute
-                                    # `minutes` is an integer representing the
-                                    # number of minutes the user has to read
-      # Returns a string with a chunk of the contents that the user could read
-      # in the given number of minutes.
-      # If called again, `reading_chunk` should return the next chunk, skipping
-      # what has already been read, until the contents is fully read.
-      # The next call after that it should restart from the beginning.
+    def reading_chunk(wpm, minutes)
+      fail "Enter a bigger number" if wpm == 0 || minutes == 0
+      amount_we_can_read = wpm * minutes
+      start_at = @words_read
+      words_to_show = words[start_at, amount_we_can_read]
+      if count_words == @words_read + words_to_show.length
+        @words_read = 0
+      else
+        @words_read = @words_read + amount_we_can_read
+      end 
+      words_to_show.join(" ")
+    end
+
+    private
+
+    def words
+      @contents.split(" ")
     end
   end
