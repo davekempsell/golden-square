@@ -14,10 +14,11 @@ class DiaryEntry
     end
   
     def count_words
-      @contents.count(" ") + 1
+      words.count
     end
   
     def reading_time(wpm)
+      fail "ERROR" unless wpm.positive?
       return (count_words / wpm.to_f).ceil
     end
   
@@ -31,12 +32,13 @@ class DiaryEntry
       else
         @words_read = @words_read + amount_we_can_read
       end 
-      words_to_show.join(" ")
+      
+      return words_to_show.join(" ")
     end
 
     private
 
     def words
-      @contents.split(" ")
+      return @contents.split(" ")
     end
   end

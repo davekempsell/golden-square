@@ -34,5 +34,19 @@ RSpec.describe DiaryEntry do
       entry = DiaryEntry.new("Monday", "One two three four five six seven eight nine ten.")
       expect(entry.reading_chunk(2, 2)).to eq "One two three four"
     end
+
+    it "returns next chunk when called again" do
+      entry = DiaryEntry.new("Monday", "One two three four five six seven eight nine ten.")
+      entry.reading_chunk(2, 2)
+      expect(entry.reading_chunk(2, 2)).to eq "five six seven eight"
+    end
+
+    it "returns to beginning of contents when all text has been read" do
+      entry = DiaryEntry.new("Monday", "One two three four five six seven eight nine ten.")
+      entry.reading_chunk(2, 2)
+      entry.reading_chunk(2, 2)
+      entry.reading_chunk(2, 2)
+      expect(entry.reading_chunk(2, 2)).to eq "One two three four"
+    end
   end
 end
