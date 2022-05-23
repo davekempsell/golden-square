@@ -13,7 +13,7 @@ RSpec.describe Todo do
       expect(task_1.task).to eq "Do this thing"
     end
 
-    describe "done? method" do
+    describe "#done? method" do
       it "returns true if task is done" do
         task_1 = Todo.new("Do this thing")
         task_1.mark_done!
