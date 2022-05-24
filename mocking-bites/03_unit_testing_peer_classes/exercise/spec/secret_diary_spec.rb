@@ -14,17 +14,18 @@ RSpec.describe 'Int Test:' do
   end
 
   it 'given an unlocked SecretDiary, return contents' do 
-    diary = double(:diary, contents: 'some_contents')
+    diary = double(:diary)
+    expect(diary).to receive(:read).and_return('some_contents')
     secret_diary = SecretDiary.new(diary)
     secret_diary.unlock
-    expect(secret_diary.read).to eq diary.read
+    expect(secret_diary.read).to eq 'some_contents'
   end
 
-  xit 'given a locked SecretDiary, return Go away!' do
-    diary = Diary.new('some_contents')
+  it 'given a locked SecretDiary, return Go away!' do
+    diary = double(:diary)
     secret_diary = SecretDiary.new(diary)
     secret_diary.unlock
     secret_diary.lock
-    expect(secret_diary.read).to eq 'Go away!'
+    expect { secret_diary.read }.to raise_error 'Go away!'
   end
 end

@@ -8,6 +8,6 @@ RSpec.describe 'Int Test:' do
 
   it 'given a new Diary, returns contents of Diary' do
     diary = Diary.new('some_contents')
-    expect(diary.contents).to eq 'some_contents'
+    expect(diary.read).to eq 'some_contents'
   end
 end

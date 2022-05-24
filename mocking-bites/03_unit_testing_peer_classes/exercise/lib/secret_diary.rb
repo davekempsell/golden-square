@@ -5,8 +5,8 @@ class SecretDiary
   end
 
   def read
-    fail 'Go away!' if @locked = true 
-
+    fail 'Go away!' if @locked == true 
+    return @diary.read
     
 
     # Returns the diary's contents if the diary is unlocked
@@ -14,11 +14,13 @@ class SecretDiary
   end
 
   def lock
+    @locked = true
     # Locks the diary
     # Returns nothing
   end
 
   def unlock
+    @locked = false
     # Unlocks the diary
     # Returns nothing
   end

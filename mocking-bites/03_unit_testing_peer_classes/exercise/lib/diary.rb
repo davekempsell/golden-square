@@ -1,7 +1,7 @@
 # Diary = Struct.new(:contents)
 
 class Diary
-  def initialize(contents)
+  def initialize(contents) # contents is a string
     @contents = contents
   end
 
