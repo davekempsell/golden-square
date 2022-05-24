@@ -38,9 +38,3 @@ RSpec.describe TaskList do
     expect(task_list.all_complete?).to eq false
   end
 end
-
-# class task
-#   def complete?
-#     return true
-#   end
-# end
