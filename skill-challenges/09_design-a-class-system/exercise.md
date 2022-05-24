@@ -115,7 +115,6 @@ class DiaryEntry
   def time_to_read(wpm)
     # returns time to read contents based on provided wpm
   end
-
 end
 
 # File: lib/todo_list.rb
@@ -132,7 +131,6 @@ end
 3. Create Examples as Integration Tests
 Create examples of the classes being used together in different situations and combinations that reflect the ways in which the system will be used.
 
-# Diary class
 # 1. returns previously added DiaryEntry
 my_diary = Diary.new
 entry_1 = DiaryEntry.new("Title_1","Some contents and words")
