@@ -17,7 +17,7 @@ RSpec.describe 'Int Test:' do
     diary = Diary.new('some_contents')
     secret_diary = SecretDiary.new(diary)
     secret_diary.unlock
-    expect(secret_diary.read).to eq diary.read
+    expect(secret_diary.read).to eq "some_contents"
   end
 
   it 'given a locked SecretDiary, return Go away!' do

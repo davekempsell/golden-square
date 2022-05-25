@@ -14,8 +14,7 @@ RSpec.describe 'Int Test:' do
   end
 
   it 'given an unlocked SecretDiary, return contents' do 
-    diary = double(:diary)
-    expect(diary).to receive(:read).and_return('some_contents')
+    diary = double(:diary, read: 'some_contents')
     secret_diary = SecretDiary.new(diary)
     secret_diary.unlock
     expect(secret_diary.read).to eq 'some_contents'
